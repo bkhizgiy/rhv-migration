@@ -1,0 +1,26 @@
+apiVersion: forklift.konveyor.io/v1beta1
+kind: StorageMap
+metadata:
+  name: storage-many
+  namespace: konveyor-forklift
+spec:
+  map:
+    - destination:
+        storageClass: nfs-csi
+      source:
+        id: aa58449d-b965-4f58-8a1a-39a07b68b87b
+    - destination:
+        storageClass: nfs-csi
+      source:
+        id: 0a608e8c-1f9a-414c-ae5f-64bd92b05215
+    - destination:
+        storageClass: nfs-csi
+      source:
+        id: be4f6e20-2feb-4b2e-bb01-68270cd9bbc4
+  provider:
+    destination:
+      name: host
+      namespace: konveyor-forklift
+    source:
+      name: provider-script
+      namespace: konveyor-forklift

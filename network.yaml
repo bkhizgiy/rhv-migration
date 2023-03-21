@@ -1,0 +1,22 @@
+apiVersion: forklift.konveyor.io/v1beta1
+kind: NetworkMap
+metadata:
+  name: network-many
+  namespace: konveyor-forklift
+spec:
+  map:
+    - destination:
+        type: pod
+      source:
+        id: 3e8ff037-b5cd-414f-a6b8-6ed0fbdbf4fc
+    - destination:
+        type: pod
+      source:
+        id: 00000000-0000-0000-0000-000000000009
+  provider:
+    destination:
+      name: host
+      namespace: konveyor-forklift
+    source:
+      name: provider-script
+      namespace: konveyor-forklift

@@ -1,0 +1,11 @@
+apiVersion: forklift.konveyor.io/v1beta1
+kind: Provider
+metadata:
+  name: test-1
+  namespace: konveyor-forklift
+spec:
+  secret:
+    name: rhv-lab-hz782
+    namespace: konveyor-forklift
+  type: ovirt
+  url: 'https://vm-10-122.lab.eng.tlv2.redhat.com/ovirt-engine/api'

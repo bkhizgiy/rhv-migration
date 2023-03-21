@@ -1,0 +1,10 @@
+apiVersion: forklift.konveyor.io/v1beta1
+kind: Migration
+metadata:
+  name: mtv-test-1678661777242
+  namespace: konveyor-forklift
+spec:
+  plan:
+    name: mtv-test
+    namespace: konveyor-forklift
+

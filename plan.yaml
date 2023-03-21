@@ -1,0 +1,29 @@
+apiVersion: forklift.konveyor.io/v1beta1
+kind: Plan
+metadata:
+  name: mtv-test
+  namespace: konveyor-forklift
+spec:
+  archived: false
+  description: ''
+  map:
+    network:
+      name: network-test
+      namespace: konveyor-forklift
+    storage:
+      name: storage-1
+      namespace: konveyor-forklift
+  provider:
+    destination:
+      name: host
+      namespace: konveyor-forklift
+    source:
+      name: example-cr
+      namespace: konveyor-forklift
+  targetNamespace: mig-script
+  vms:
+    - hooks: []
+      id: f6f7b486-7946-4a38-8527-d058863a0f67
+    - hooks: []
+      id: 73b2216e-8283-4582-98ae-ba2a975b64cb
+  warm: false
