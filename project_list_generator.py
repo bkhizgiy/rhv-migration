@@ -2,9 +2,9 @@ import ovirtsdk4 as sdk
 
 #fetch user-vms list from the labs
 connection = sdk.Connection(
-    url='<URL>',
-    username='<user>',
-    password='<pass>',
+    url='https://vm-10-122.lab.eng.tlv2.redhat.com/ovirt-engine/api',
+    username='admin@internal',
+    password='qum5net',
     insecure=True,
 )
 
@@ -37,5 +37,9 @@ for vm, users in vm_user_mapping.items():
     else:
         users_vm_mapping[users_tuple] = [vm]
 
-# Print the resulting users_vm_mapping dictionary
-print(users_vm_mapping)
+# Open a file to write the output
+with open('projects_list.txt', 'w') as f:
+    for users, vms in users_vm_mapping.items():
+        f.write(f"{users}: {vms}\n")
+
+print("Output saved to file.")
