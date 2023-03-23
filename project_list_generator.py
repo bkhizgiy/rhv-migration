@@ -2,10 +2,10 @@ import ovirtsdk4 as sdk
 
 #fetch user-vms list from the labs
 connection = sdk.Connection(
-    url='https://vm-10-122.lab.eng.tlv2.redhat.com/ovirt-engine/api',
-    username='admin@internal',
-    password='qum5net',
-    insecure=True,
+    url='<URL>',
+    username='<User>',
+    password='<Pass>',
+    ca_file='ca.pem',
 )
 
 vms_service = connection.system_service().vms_service()
