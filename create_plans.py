@@ -86,8 +86,7 @@ for users in vm_list:
         plural="plans",
         body=plan_object
     )
-    
-    project_plan_map[project_name] = plan_name
+    project_plan_map[users_str+"-migration"] = plan_name
 
 
 #create JSON file with project and paln names mapping
@@ -96,4 +95,3 @@ project_plan_json = json.dumps({str(k): v for k, v in project_plan_map.items()})
 with open('project_plans_map.json', 'w') as f:
     f.write(project_plan_json)
     f.close()
-
