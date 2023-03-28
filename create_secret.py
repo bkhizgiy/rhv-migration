@@ -20,7 +20,7 @@ cacert = encoded_value = base64.b64encode(cacert.encode("utf-8")).decode("utf-8"
 
 # Create the Secret object
 secret = client.V1Secret(
-    metadata=client.V1ObjectMeta(name="my-secret1", labels={"createdForProviderType": "ovirt"}),
+    metadata=client.V1ObjectMeta(name="secret-1", labels={"createdForProviderType": "ovirt"}),
     type="Opaque",
     data={
         "username": user,
