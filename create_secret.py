@@ -1,5 +1,5 @@
 from kubernetes import client, config
-import base64
+import base64, os
 
 
 # Load the Kubernetes configuration
@@ -18,9 +18,12 @@ url = encoded_value = base64.b64encode(url.encode("utf-8")).decode("utf-8")
 insecure = encoded_value = base64.b64encode(insecure.encode("utf-8")).decode("utf-8")
 cacert = encoded_value = base64.b64encode(cacert.encode("utf-8")).decode("utf-8")
 
+secret_name = os.environ.get('SECRET')
+mtv_namespace = os.environ.get('NAMESPACE')
+
 # Create the Secret object
 secret = client.V1Secret(
-    metadata=client.V1ObjectMeta(name="secret-1", labels={"createdForProviderType": "ovirt"}),
+    metadata=client.V1ObjectMeta(name=secret_name, labels={"createdForProviderType": "ovirt"}),
     type="Opaque",
     data={
         "username": user,
@@ -33,5 +36,5 @@ secret = client.V1Secret(
 
 # Create the Secret using the Kubernetes API
 api_instance = client.CoreV1Api()
-api_instance.create_namespaced_secret(namespace="konveyor-forklift", body=secret)
+api_instance.create_namespaced_secret(namespace=mtv_namespace, body=secret)
 

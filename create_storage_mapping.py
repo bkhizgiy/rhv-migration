@@ -1,5 +1,6 @@
 import ovirtsdk4 as sdk
 from kubernetes import client, config
+import os
 
 # create a connection to the oVirt API
 connection = sdk.Connection(
@@ -29,25 +30,29 @@ for sd_id in storage_mapping_list:
         }
     storage_plan_mapping.append(storage_entry)
 
+
+mtv_namespace = os.environ.get('NAMESPACE')
+provider_name = os.environ.get('PROVIDER')
+storage_mapping_name = os.environ.get('STORAGE_MAP')
+
 #create storage map
-storage_name = "storage-script"
 storage_object = {
     "apiVersion": "forklift.konveyor.io/v1beta1",
     "kind": "StorageMap",
     "metadata": {
-        "name": storage_name,
-        "namespace": "konveyor-forklift"
+        "name": storage_mapping_name,
+        "namespace": mtv_namespace
     },
     "spec": {
         "map":storage_plan_mapping,
         "provider": {
             "destination": {
                 "name": "host",
-                "namespace": "konveyor-forklift"
+                "namespace": mtv_namespace
             },
             "source": {
-                "name": "provider_name",
-                "namespace": "konveyor-forklift"
+                "name": provider_name,
+                "namespace": mtv_namespace
             }
         }
     }
@@ -60,7 +65,7 @@ custom_api = client.CustomObjectsApi(api_cr_client)
 custom_api.create_namespaced_custom_object(
     group="forklift.konveyor.io",
     version="v1beta1",
-    namespace="konveyor-forklift",
+    namespace=mtv_namespace,
     plural="storagemaps",
     body=storage_object
 )
