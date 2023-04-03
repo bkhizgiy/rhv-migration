@@ -1,7 +1,6 @@
 from kubernetes import client, config
 import base64, os
 
-
 # Load the Kubernetes configuration
 config.load_kube_config()
 
@@ -37,4 +36,3 @@ secret = client.V1Secret(
 # Create the Secret using the Kubernetes API
 api_instance = client.CoreV1Api()
 api_instance.create_namespaced_secret(namespace=mtv_namespace, body=secret)
-
