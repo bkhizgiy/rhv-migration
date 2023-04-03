@@ -1,6 +1,6 @@
 
 from kubernetes import client, config
-import json
+import json, os
 
 # Open the JSON file for input
 with open('user_vms.json') as f:
@@ -14,9 +14,10 @@ api_client = client.CoreV1Api()
 api_cr_client = client.ApiClient()
 custom_api = client.CustomObjectsApi(api_cr_client)
 
-network_name = "name1"
-storage_name = "name2"
-provider_name = "name3"
+mtv_namespace = os.environ.get('NAMESPACE')
+provider_name = os.environ.get('PROVIDER')
+storage_mapping_name = os.environ.get('STORAGE_MAP')
+network_mapping_name = os.environ.get('NETWORK_MAP')
 
 project_plan_map = {}
 #create projects names for all users:
@@ -48,29 +49,29 @@ for users in vm_list:
         "kind": "Plan",
         "metadata": {
             "name": plan_name,
-            "namespace": "konveyor-forklift"
+            "namespace": mtv_namespace
         },
         "spec": {
             "archived": False,
             "description": "",
             "map": {
                 "network": {
-                    "name": network_name,
-                    "namespace": "konveyor-forklift"
+                    "name": network_mapping_name,
+                    "namespace": mtv_namespace
                 },
                 "storage": {
-                    "name": storage_name,
-                    "namespace": "konveyor-forklift"
+                    "name": storage_mapping_name,
+                    "namespace": mtv_namespace
                 }
             },
             "provider": {
                 "destination": {
                     "name": "host",
-                    "namespace": "konveyor-forklift"
+                    "namespace": mtv_namespace
                 },
                 "source": {
                     "name": provider_name,
-                    "namespace": "konveyor-forklift"
+                    "namespace": mtv_namespace
                 }
             },
             "targetNamespace": project_name,
@@ -82,7 +83,7 @@ for users in vm_list:
     custom_api.create_namespaced_custom_object(
         group="forklift.konveyor.io",
         version="v1beta1",
-        namespace="konveyor-forklift",
+        namespace=mtv_namespace,
         plural="plans",
         body=plan_object
     )
