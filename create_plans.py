@@ -23,7 +23,7 @@ project_plan_map = {}
 #create projects names for all users:
 for users in vm_list:
     users_str = users
-    users_str = users_str.replace("(", "").replace(")", "").replace(", ", "-").replace("'", "")
+    users_str = users_str.replace("(", "").replace(")", "").replace(", ", "-").replace("'", "").replace(",", "")
     project_name = users_str+"-project"
 
     project = client.V1Namespace()
