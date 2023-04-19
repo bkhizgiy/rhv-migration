@@ -12,6 +12,8 @@ connection = sdk.Connection(
 vms_service = connection.system_service().vms_service()
 vms = vms_service.list(search='name=*')
 
+super_users = ['admin']
+
 vm_user_mapping ={}
 for vm in vms:
     permissions = vms_service.vm_service(vm.id).permissions_service().list()
@@ -22,7 +24,8 @@ for vm in vms:
 
         user = connection.follow_link(permission.user)
         # remove super user dont appand to list
-        users.append(user.principal)
+        if user.principal not in super_users and user.principal not in users:
+            users.append(user.principal)
     vm_user_mapping[vm.id] = users
 
 user_vms = {}

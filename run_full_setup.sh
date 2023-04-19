@@ -4,7 +4,7 @@ GREEN='\033[0;32m'
 PUR='\033[0;35m'
 NC='\033[0m' # No Color
 
-export NAMESPACE=${NAMESPACE:-}
+export NAMESPACE=${NAMESPACE:-openshift-mtv}
 export SECRET=${SECRET:-mtv-secret}
 export PROVIDER=${PROVIDER:-mtv-provider}
 export STORAGE_MAP=${STORAGE_MAP:-mtv-storage-mapping}
