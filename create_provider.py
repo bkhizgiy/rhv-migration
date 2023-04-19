@@ -25,7 +25,7 @@ cr_object = {
             "namespace": mtv_namespace,
         },
         "type": "ovirt",
-        "url": "https://vm-10-122.lab.eng.tlv2.redhat.com/ovirt-engine/api",
+        "url": "<url>",
     },
 }
 
