@@ -22,7 +22,7 @@ storage_plan_mapping = []
 for sd_id in storage_mapping_list:
     storage_entry = {
             "destination": {
-                "storageClass": "nfs-csi-benny"
+                "storageClass": "<SC>"
             },
             "source": {
                 "id": sd_id

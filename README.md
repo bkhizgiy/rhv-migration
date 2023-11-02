@@ -7,7 +7,7 @@ Before using the scripts in this repository, you will need to have the following
 
 - A Red Hat Virtualization (RHV) environment
 - An OpenShift Container Platform (OCP) environment with Container Native Virtualization (CNV) installed
-- The Migration Toolkit for Virtualization (MTV) 2.4 installed on your machine
+- The Migration Toolkit for Virtualization (MTV) <= 2.4 installed on your machine
 - Python 3.6 or higher installed on your machine
 - A workstation or server with the following installed:
   - The ovirt-engine-sdk-python package (for RHV API access)

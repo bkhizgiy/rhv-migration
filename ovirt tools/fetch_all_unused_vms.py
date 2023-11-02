@@ -26,7 +26,7 @@ for vm in vms:
     time_diff = (datetime.now(timezone.utc) - dt_utc).total_seconds()
 
     if time_diff > 30 * 24 * 60 * 60: # 30 days in seconds
-        vm_to_remove[vm.name] = [str(vm.stop_time.date()), vm.]
+        vm_to_remove[vm.name] = [str(vm.stop_time.date()), vm.id]
 
 connection.close()
 

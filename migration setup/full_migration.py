@@ -62,7 +62,7 @@ cr_object = {
             "namespace": "konveyor-forklift",
         },
         "type": "ovirt",
-        "url": "https://vm-10-122.lab.eng.tlv2.redhat.com/ovirt-engine/api",
+        "url": "<URL>",
     },
 }
 

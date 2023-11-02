@@ -35,9 +35,7 @@ for vm in vms:
 total_size_gb_actual = total_size_actual / 1073741824
 total_size_gb_provisioned = total_size_provisioned / 1073741824
 
-# Print the total size of disks for all the VMs
 print(f'Total provisioned size of disks for all the VMs: {total_size_provisioned} bytes, {total_size_gb_provisioned} GB')
 print(f'Total actual size of disks for all the VMs: {total_size_actual} bytes, {total_size_gb_actual} GB')
 
-# Close the connection to the oVirt Engine
 connection.close()

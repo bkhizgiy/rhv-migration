@@ -20,9 +20,10 @@ cacert = encoded_value = base64.b64encode(cacert.encode("utf-8")).decode("utf-8"
 secret_name = os.environ.get('SECRET')
 mtv_namespace = os.environ.get('NAMESPACE')
 
+metadata = client.V1ObjectMeta(name=secret_name, labels={"createdForProviderType" : "ovirt"})
 # Create the Secret object
 secret = client.V1Secret(
-    metadata=client.V1ObjectMeta(name=secret_name, labels={"createdForProviderType": "ovirt"}),
+    metadata=metadata,
     type="Opaque",
     data={
         "username": user,
@@ -32,6 +33,7 @@ secret = client.V1Secret(
         "cacert": cacert
     }
 )
+
 
 # Create the Secret using the Kubernetes API
 api_instance = client.CoreV1Api()

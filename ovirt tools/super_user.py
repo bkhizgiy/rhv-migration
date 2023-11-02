@@ -24,5 +24,4 @@ for user in all_users:
         if role.name  =='SuperUser':
             admin_users.append(user.principal)
 
-# Print the list of admin users
 print(admin_users)
