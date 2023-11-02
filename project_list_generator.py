@@ -3,16 +3,16 @@ import json
 
 #fetch user-vms list from the labs
 connection = sdk.Connection(
-    url='<URL>',
-    username='<User>',
-    password='<Pass>',
+    url='https://ovirt-url/ovirt-engine/api',
+    username='admin@internal',
+    password='password',
     ca_file='ca.pem',
 )
 
 vms_service = connection.system_service().vms_service()
 vms = vms_service.list(search='name=*')
-
-super_users = ['admin']
+#list all the super users in the system
+super_users = ['admin', 'user1', 'user2']
 
 vm_user_mapping ={}
 for vm in vms:
@@ -38,9 +38,6 @@ for vm, users in vm_user_mapping.items():
     else:
         user_vms[users_list] = [vm]
 
-# Convert dictionary to JSON
 user_vms_json = json.dumps({str(k): v for k, v in user_vms.items()})
-
-# Write JSON to file
 with open('user_vms.json', 'w') as f:
     f.write(user_vms_json)
